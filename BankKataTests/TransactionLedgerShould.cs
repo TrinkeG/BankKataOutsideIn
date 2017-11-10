@@ -9,41 +9,41 @@ namespace BankKataTests
     [TestFixture]
     public class TransactionLedgerShould
     {
+        private static DateTime _timeOfTransaction;
+        private static Mock<IClock> _clock;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _timeOfTransaction = new DateTime(2017, 06, 24);
+            _clock = new Mock<IClock>();
+            _clock.Setup(clockMock => clockMock.getTime()).Returns(_timeOfTransaction.ToUniversalTime);
+        }
+
         [Test]
         public void record_a_deposit_transaction()
         {
-            var timeOfTransaction = new DateTime(2017,06,24);
-            var clock = new Mock<IClock>();
-            clock.Setup(clockMock => clockMock.getTime()).Returns(timeOfTransaction.ToUniversalTime);
-
-            Amount credit = new Amount(5);
+            var credit = new Amount(5);
             IAmount debit = new NullAmount();
-            var expectedTransaction = new Transaction(clock.Object.getTime(),credit, debit);
-            var transactionLedger = new TransactionLedger(clock.Object);
-            
+            var expectedTransaction = new Transaction(_clock.Object.getTime(),credit, debit);
+            var transactionLedger = new TransactionLedger(_clock.Object);
             
             transactionLedger.Deposit(credit);
 
             Assert.Contains(expectedTransaction,transactionLedger.GetTransactions());
         }
-        
+
         [Test]
         public void record_a_withdrawal_transaction()
         {
-            var timeOfTransaction = new DateTime(2017,06,24);
-            var clock = new Mock<IClock>();
-            clock.Setup(clockMock => clockMock.getTime()).Returns(timeOfTransaction.ToUniversalTime);
-
-            Amount debit = new Amount(5);
+            var debit = new Amount(5);
             IAmount credit = new NullAmount();
-            var expectedTransaction = new Transaction(clock.Object.getTime(),credit, debit);
-            var transactionLedger = new TransactionLedger(clock.Object);
-            
+            var expectedTransaction = new Transaction(_clock.Object.getTime(),credit, debit);
+            var transactionLedger = new TransactionLedger(_clock.Object);
             
             transactionLedger.Withdraw(debit);
 
             Assert.Contains(expectedTransaction,transactionLedger.GetTransactions());
         }
-        
     }
 }
