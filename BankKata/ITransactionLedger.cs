@@ -2,7 +2,7 @@
 {
     public interface ITransactionLedger
     {
-        void Deposit(IAmount depositAmount);
-        void Withdraw(Amount amount);
+        void Deposit(Amount depositAmount);
+        void Withdraw(Amount withdrawalAmount);
     }
 }

@@ -16,7 +16,7 @@ namespace BankKataTests
             var clock = new Mock<IClock>();
             clock.Setup(clockMock => clockMock.getTime()).Returns(timeOfTransaction.ToUniversalTime);
 
-            IAmount credit = new Amount(5);
+            Amount credit = new Amount(5);
             IAmount debit = new NullAmount();
             var expectedTransaction = new Transaction(clock.Object.getTime(),credit, debit);
             var transactionLedger = new TransactionLedger(clock.Object);
@@ -24,8 +24,25 @@ namespace BankKataTests
             
             transactionLedger.Deposit(credit);
 
-            Assert.AreEqual(expectedTransaction, transactionLedger.GetTransactions().First());
-//            Assert.Contains(expectedTransaction,transactionLedger.GetTransactions());
+            Assert.Contains(expectedTransaction,transactionLedger.GetTransactions());
+        }
+        
+        [Test]
+        public void record_a_withdrawal_transaction()
+        {
+            var timeOfTransaction = new DateTime(2017,06,24);
+            var clock = new Mock<IClock>();
+            clock.Setup(clockMock => clockMock.getTime()).Returns(timeOfTransaction.ToUniversalTime);
+
+            Amount debit = new Amount(5);
+            IAmount credit = new NullAmount();
+            var expectedTransaction = new Transaction(clock.Object.getTime(),credit, debit);
+            var transactionLedger = new TransactionLedger(clock.Object);
+            
+            
+            transactionLedger.Withdraw(debit);
+
+            Assert.Contains(expectedTransaction,transactionLedger.GetTransactions());
         }
         
     }

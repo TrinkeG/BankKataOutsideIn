@@ -16,15 +16,16 @@ namespace BankKata
             _transactions = new List<Transaction>();
         }
 
-        public void Deposit(IAmount depositAmount)
+        public void Deposit(Amount depositAmount)
         {
             var transaction = new Transaction(_clock.getTime(), depositAmount, new NullAmount());
             _transactions.Add(transaction);
         }
 
-        public void Withdraw(Amount amount)
+        public void Withdraw(Amount withdrawalAmount)
         {
-            throw new NotImplementedException();
+            var transaction = new Transaction(_clock.getTime(), new NullAmount(), withdrawalAmount);
+            _transactions.Add(transaction);
         }
 
         public List<Transaction> GetTransactions()
