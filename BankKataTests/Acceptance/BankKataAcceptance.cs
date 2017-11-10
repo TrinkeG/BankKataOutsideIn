@@ -21,8 +21,9 @@ namespace BankKataTests
         public void Acceptance()
         {
             var mockOutputConsole = new Mock<OutputConsole>();
-            var statementPrinter = new StatementPrinter(mockOutputConsole.Object);
-            var atm = new ATM(statementPrinter);
+            var statementPrinter = new Mock<IStatementPrinter>();
+            var transactionLedger = new Mock<ITransactionLedger>();
+            var atm = new ATM(statementPrinter.Object, transactionLedger.Object);
             
             atm.Deposit(1000);
             atm.Deposit(2000);

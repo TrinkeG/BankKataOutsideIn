@@ -1,10 +1,7 @@
 ﻿namespace BankKata
 {
-    public abstract class OutputConsole
+    public interface OutputConsole
     {
-        public virtual void WriteLine(string dateCreditDebitBalance)
-        {
-            throw new System.NotImplementedException();
-        }
+        void WriteLine(string dateCreditDebitBalance);
     }
 }

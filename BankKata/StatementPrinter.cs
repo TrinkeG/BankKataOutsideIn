@@ -2,9 +2,8 @@
 
 namespace BankKata
 {
-    
-        public class StatementPrinter
-        {
+    public class StatementPrinter : IStatementPrinter
+    {
             private readonly OutputConsole _outputConsole;
 
             public StatementPrinter(OutputConsole outputConsole)
