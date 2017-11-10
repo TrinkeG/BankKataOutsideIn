@@ -11,7 +11,7 @@ namespace BankKata
                 _outputConsole = outputConsole;
             }
 
-            public void Print()
+            public void Print(ITransactionLedger mockTransactionLedger)
             {
                 const string header = "date || credit || debit || balance";
                 _outputConsole.WriteLine(header);

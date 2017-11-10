@@ -2,6 +2,6 @@
 {
     public interface IStatementPrinter
     {
-        void Print();
+        void Print(ITransactionLedger mockTransactionLedger);
     }
 }

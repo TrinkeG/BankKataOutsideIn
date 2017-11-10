@@ -21,10 +21,13 @@ namespace BankKata
 
         public void Withdraw(int funds)
         {
+            Amount depositAmount = new Amount(funds);
+            _transactionLedger.Withdraw(depositAmount);
         }
 
         public void PrintStatement()
         {
+            _statementPrinter.Print(_transactionLedger);
         }
     }
 }

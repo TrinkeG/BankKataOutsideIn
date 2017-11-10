@@ -13,8 +13,8 @@ namespace BankKataTests
             var mockOutputConsole = new Mock<OutputConsole>();
             
             var statementPrinter = new StatementPrinter(mockOutputConsole.Object);
-
-            statementPrinter.Print();
+            var transactionLedger = new Mock<ITransactionLedger>();
+            statementPrinter.Print(transactionLedger.Object);
             
             mockOutputConsole.Verify(console => console.WriteLine("date || credit || debit || balance"));
         }
