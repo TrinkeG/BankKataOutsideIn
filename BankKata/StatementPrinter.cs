@@ -11,5 +11,11 @@ namespace BankKata
             {
                 _outputConsole = outputConsole;
             }
+
+            public void Print()
+            {
+                const string header = "date || credit || debit || balance";
+                _outputConsole.WriteLine(header);
+            }
         }
 }
