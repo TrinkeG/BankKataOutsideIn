@@ -8,7 +8,7 @@ namespace BankKata
     public class TransactionLedger : ITransactionLedger
     {
         private readonly IClock _clock;
-        private List<Transaction> _transactions;
+        private readonly List<Transaction> _transactions;
 
         public TransactionLedger(IClock clock)
         {
@@ -19,18 +19,23 @@ namespace BankKata
         public void Deposit(Amount depositAmount)
         {
             var transaction = new Transaction(_clock.getTime(), depositAmount, new NullAmount());
-            _transactions.Add(transaction);
+            StoreTransaction(transaction);
         }
 
         public void Withdraw(Amount withdrawalAmount)
         {
             var transaction = new Transaction(_clock.getTime(), new NullAmount(), withdrawalAmount);
-            _transactions.Add(transaction);
+            StoreTransaction(transaction);
         }
 
         public List<Transaction> GetTransactions()
         {
             return _transactions;
+        }
+
+        private void StoreTransaction(Transaction transaction)
+        {
+            _transactions.Add(transaction);
         }
     }
 }
