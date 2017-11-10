@@ -24,13 +24,13 @@ namespace BankKataTests
             var statementPrinter = new StatementPrinter(mockOutputConsole.Object);
             var atm = new ATM(statementPrinter);
             
-            atm.deposit(1000);
-            atm.deposit(2000);
-            atm.withdraw(500);
-            atm.printStatement();
+            atm.Deposit(1000);
+            atm.Deposit(2000);
+            atm.Withdraw(500);
+            atm.PrintStatement();
 
 
-            mockOutputConsole.Verify(outputMock => outputMock.WriteLine("date || credit || debit || balance"));
+            mockOutputConsole.Verify(console => console.WriteLine("date || credit || debit || balance"));
             mockOutputConsole.Verify(outputMock => outputMock.WriteLine("14/01/2012 || || 500.00 || 2500.00"));
             mockOutputConsole.Verify(outputMock => outputMock.WriteLine("13/01/2012 || 2000.00 || || 3000.00"));
             mockOutputConsole.Verify(outputMock => outputMock.WriteLine("10/01/2012 || 1000.00 || || 1000.00"));

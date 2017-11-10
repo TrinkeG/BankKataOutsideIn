@@ -2,24 +2,23 @@
 {
     public class ATM
     {
+        private readonly StatementPrinter _statementPrinter;
+
         public ATM(StatementPrinter statementPrinter)
         {
-            throw new System.NotImplementedException();
+            _statementPrinter = statementPrinter;
         }
 
-        public void deposit(int p0)
+        public void Deposit(int funds)
         {
-            throw new System.NotImplementedException();
         }
 
-        public void withdraw(int i)
+        public void Withdraw(int funds)
         {
-            throw new System.NotImplementedException();
         }
 
-        public void printStatement()
+        public void PrintStatement()
         {
-            throw new System.NotImplementedException();
         }
     }
 }

@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Acceptance\BankKataAcceptance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatementPrinterShould.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
