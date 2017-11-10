@@ -1,4 +1,5 @@
-﻿using BankKata;
+﻿using System;
+using BankKata;
 using Moq;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
@@ -20,13 +21,20 @@ namespace BankKataTests
         [Test]
         public void Acceptance()
         {
+            var clock = new Mock<IClock>();
             var mockOutputConsole = new Mock<OutputConsole>();
             var statementPrinter = new StatementPrinter(mockOutputConsole.Object);
-            var transactionLedger = new Mock<ITransactionLedger>();
-            var atm = new ATM(statementPrinter, transactionLedger.Object);
-            
+            var transactionLedger = new TransactionLedger(clock.Object);
+            var atm = new ATM(statementPrinter, transactionLedger);
+
+            var timeOfTransaction = new DateTime(2012,01,10);
+            clock.Setup(clockMock => clockMock.getTime()).Returns(timeOfTransaction.ToUniversalTime);
             atm.Deposit(1000);
+            timeOfTransaction = new DateTime(2012,01,13);
+            clock.Setup(clockMock => clockMock.getTime()).Returns(timeOfTransaction.ToUniversalTime);
             atm.Deposit(2000);
+            timeOfTransaction = new DateTime(2012,01,14);
+            clock.Setup(clockMock => clockMock.getTime()).Returns(timeOfTransaction.ToUniversalTime);
             atm.Withdraw(500);
             atm.PrintStatement();
 

@@ -52,6 +52,7 @@
     <Compile Include="ATMShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StatementPrinterShould.cs" />
+    <Compile Include="TransactionLedgerShould.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

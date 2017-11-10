@@ -1,6 +1,6 @@
 ﻿namespace BankKata
 {
-    public class Amount
+    public class Amount : IAmount
     {
         private readonly int _value;
 

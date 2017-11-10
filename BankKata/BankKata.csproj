@@ -41,11 +41,16 @@
   <ItemGroup>
     <Compile Include="Amount.cs" />
     <Compile Include="ATM.cs" />
+    <Compile Include="IAmount.cs" />
+    <Compile Include="IClock.cs" />
     <Compile Include="IStatementPrinter.cs" />
+    <Compile Include="NullAmount.cs" />
     <Compile Include="OutputConsole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StatementPrinter.cs" />
     <Compile Include="ITransactionLedger.cs" />
+    <Compile Include="Transaction.cs" />
+    <Compile Include="TransactionLedger.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
